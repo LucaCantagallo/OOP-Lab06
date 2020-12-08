@@ -149,20 +149,20 @@ public final class UseCollection {
          * Oceania -> 38,304,000
          */
          
-         final Map <String, Integer> continents = new HashMap<>();
-         continents.put("Africa", 1110635000);
-         continents.put("America", 972005000);
-         continents.put("Antarctica", 0);
-         continents.put("Asia", 429872300); //come fare??
-         continents.put("Europe", 742452000);
-         continents.put("Oceania", 38304000);
+         final Map <String, Long> continents = new HashMap<>();
+         continents.put("Africa", 1110635000L);
+         continents.put("America", 972005000L);
+         continents.put("Antarctica", 0L);
+         continents.put("Asia", 429872300L); 
+         continents.put("Europe", 742452000L);
+         continents.put("Oceania", 38304000L);
          
         /*
          * 8) Compute the population of the world
          */
          long populationTot = 0;
-         for(final Integer i : continents.values()) {
-        	 populationTot += (long)i;
+         for(final Long l : continents.values()) {
+        	 populationTot += l;
          }
          System.out.println(populationTot);
     }
