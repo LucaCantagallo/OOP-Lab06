@@ -1,7 +1,14 @@
 package it.unibo.oop.lab.collections2;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -29,6 +36,8 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      * 
      * think of what type of keys and values would best suit the requirements
      */
+	
+	final Map<String, Set<U>> map;
 
     /*
      * [CONSTRUCTORS]
@@ -56,6 +65,11 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
+        this.map = new HashMap<>();
+    }
+    
+    public SocialNetworkUserImpl(final String name, final String surname, final String user) {
+    	this(name, surname, user, -1);
     }
 
     /*
@@ -66,17 +80,33 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
-        return false;
+
+    	//Set<U> valuesOfMap = new HashSet<>();
+    	Set<U> valuesOfMap = this.map.get(circle);
+    	if(valuesOfMap == null) {
+    		valuesOfMap = new HashSet<>();
+    		this.map.put(circle, valuesOfMap);
+    	}
+    	return valuesOfMap.add(user);
     }
 
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
+    	Set<U> set = new HashSet<>();
+    	set = this.map.get(groupName);
+    	if(set != null) {
+    		return set;
+    	}    	
+    	return Collections.emptyList();   
     }
 
     @Override
     public List<U> getFollowedUsers() {
-        return null;
+    	List<U> list = new LinkedList<>();
+    	for (final Set<U> l : map.values()) {
+    		list.addAll(l);
+    	}  	
+    	return list;
     }
 
 }
