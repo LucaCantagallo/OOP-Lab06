@@ -15,7 +15,7 @@ public interface Graph<N> {
      * @param node
      *            the node to add
      */
-    void addNode(N node);
+    void addNode(N node); //
 
     /**
      * Adds an edge: nothing happens if source or target are null.
@@ -25,12 +25,12 @@ public interface Graph<N> {
      * @param target
      *            ending node
      */
-    void addEdge(N source, N target);
+    void addEdge(N source, N target); // source = key. target = da mettere nella lista dei values. Map<N, Set<N>>
 
     /**
      * @return all the nodes
      */
-    Set<N> nodeSet();
+    Set<N> nodeSet(); //all nodes = keys
 
     /**
      * Returns all the nodes directly targeted from a node.
@@ -39,7 +39,7 @@ public interface Graph<N> {
      *            the node
      * @return all the nodes directly targeted from the passed node
      */
-    Set<N> linkedNodes(N node);
+    Set<N> linkedNodes(N node); //pass a key and ret the values' set
 
     /**
      * Gets one sequence of nodes connecting source to target.
